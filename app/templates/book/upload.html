@@ -1,0 +1,73 @@
+<main class="container my-5 bg-white p-5 w-50">
+    <h3 class="h3 fw-bold mb-4">Unggah Buku</h3>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mb-3 w-50">
+            <label for="title">Judul</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+            {%for error in form.title.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group w-50 mb-3">
+            <label for="title">Penulis</label>
+            {{ form.author }}
+            {% if form.author.errors %}
+            {%for error in form.author.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group mb-3 w-50">
+            <label for="title">Tahun Terbit</label>
+            {{ form.year }}
+            {% if form.year.errors %}
+            {%for error in form.year.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group mb-3 w-50">
+            <label for="title">Genre</label>
+            {{ form.genre }}
+            {% if form.genre.errors %}
+            {%for error in form.genre.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group mb-3 ">
+            <label for="title">Deskripsi</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+            {%for error in form.description.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group mb-3 w-50">
+            <label for="title">File (PDF)</label>
+            {{ form.file }}
+            {% if form.file.errors %}
+            {%for error in form.file.errors %}
+            <p class="text-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</main>

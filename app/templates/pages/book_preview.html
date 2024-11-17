@@ -1,0 +1,19 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    {% include "common/head.html" %}
+    <style>
+        body {
+            background-color: lavender;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "book/partial/preview_navbar.html" %}
+    {% include "book/preview.html" %}
+    {% include "common/footer.html" %}
+</body>
+
+</html>

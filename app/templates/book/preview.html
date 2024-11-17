@@ -1,0 +1,7 @@
+{% load static %}
+<main class="container mt-5">
+    <p class="text-center">Halaman {{current_page}}/{{total_page}}</p>
+    <div class="d-flex justify-content-center w-100">
+        <img src="{% get_media_prefix %}/{{book_page}}" alt="">
+    </div>
+</main>

@@ -1,0 +1,60 @@
+{% load static %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="confirmDelete">Apakah Anda Yakin Menghapus Buku?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <a href="/books/delete/{{book.id}}" type="button" class="btn btn-danger">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container bg-white p-2 px-4 mt-5 mb-5">
+    <h1 class="my-4">{{ book.title }}</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-center">
+                <img class="img-thumbnail" src="{% get_media_prefix %}{{ cover }}" alt="{{book.title}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex justify-content-center">
+                <a href="/books/preview/{{book.id}}" class="btn btn-outline-success w-100">Mulai Baca</a>
+            </div>
+            <h3 class="my-3">Pengaturan Buku</h3>
+            <div>
+                <a href="/books/favorite/{{ book.id }}?current_page=detail" class="btn btn-outline-primary px-3 py-2"><i
+                        class="bi bi-bookmark-star{%if favorite_book_id == book.id %}-fill{%endif%}"></i></a>
+                <a href="/books/{{book.id}}/?keyword=1" class="btn btn-outline-warning">Analisis</a>
+                {% if book.user_id == user.id %}
+                <a href="/books/edit/{{book.id}}" class="btn btn-outline-success">Edit</a>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Hapus</button>
+                {% endif %}
+            </div>
+            {% if keywords|length > 0 %}
+            <h3 class="my-3">Keyword Penting Buku</h3>
+            <ul class="list-group w-50">
+                {% for keyword in keywords %}
+                <li class="list-group-item"><strong>{{ keyword}}</strong></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <h3 class="my-3">informasi Buku</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Judul : </strong>{{ book.title }}</li>
+                <li class="list-group-item"><strong>Penulis : </strong>{{ book.author }}</li>
+                <li class="list-group-item"><strong>Genre : </strong>{{ book.genre }}</li>
+                <li class="list-group-item"><strong>Tahun Terbit : </strong>{{ book.year }}</li>
+                <li class="list-group-item"><strong>Total Halaman : </strong>{{ total_page }}</li>
+            </ul>
+        </div>
+        <h3 class="my-3">Deskripsi Buku</h3>
+        <p>{{book.description}}</p>
+
+    </div>
+</div>

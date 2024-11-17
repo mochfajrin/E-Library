@@ -1,0 +1,109 @@
+{% load static %}
+
+<div class="container mt-3">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="main-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="{% get_media_prefix %}{{user.image}}" alt="{{user.name}}"
+                                class="rounded-circle p-1 bg-primary"
+                                style="object-fit: cover; width: 10rem; height: 10rem;">
+                            <div class="mt-3">
+                                <h4>{{user.name}}</h4>
+                                <p class="text-secondary mb-1">{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button id="btnEdit" class="btn btn-outline-info">Edit Profil</button>
+                        </div>
+                        <hr class="my-4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <form id="editForm" class="d-none" method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Foto</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ form.image }}
+                                </div>
+                                {% if form.image.errors %}
+                                {% for error in form.image.errors %}
+                                <p class="text-danger" role="alert">
+                                    {{ error }}
+                                </p>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Nama</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ form.name }}
+                                    {% if form.name.errors %}
+                                    {% for error in form.name.errors %}
+                                    <p class="text-danger" role="alert">
+                                        {{ error }}
+                                    </p>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                    <p class="text-danger" role="alert">
+                                        {{ error }}
+                                    </p>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="passwordForm" class="row mb-3 d-none">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Password</h6>
+                                </div>
+                                <div id="passwordContainer" class="col-sm-9 text-secondary">
+                                    {% if form.password.errors %}
+                                    {% for error in form.password.errors %}
+                                    <p class="text-danger" role="alert">
+                                        {{ error }}
+                                    </p>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button id="btnPassword" type="button" class="btn btn-outline-danger">Ubah Password</button>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-outline-success">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
